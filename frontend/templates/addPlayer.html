@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>Add a Player</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="stylesheet" type="text/css" media="screen"
+        href="{{url_for("static", filename="style.css")}}" />
+        <script src="main.js"></script>
+    </head>
+    <body>
+        <main>
+            <div>
+                <a href="/"><strong>< </strong>Back</a>
+            </div>
+            <section>
+                <h2>Add Player</h2>
+                <p>
+                    To add a player, fill out the following information and
+                    press submit.
+                </p>
+                <p>
+                    Tip: All fields are required, the form will not submit if
+                    any are empty.
+                </p>
+                <form action="/addPlayer" method="post">
+                    <fieldset>
+                        <legend>legnend text</legend>
+                        <label for="firstlast"
+                            ><p>First and Last Name</p></label
+                        >
+                        <input
+                            type="text"
+                            name="firstlast"
+                            id="firstlast"
+                            required
+                            placeholder="First Last"
+                            autofocus
+                        />
+                        <label for="age">Age</label>
+                        <input
+                            type="number"
+                            name="age"
+                            id="age"
+                            size="30"
+                            placeholder="0"
+                            min="0"
+                            required
+                        />
+                        <label for="position">Select a position:</label>
+                        <select
+                            name="position"
+                            id="position"
+                            name="position"
+                            required
+                        >
+                            <option value="" disabled>-select-</option>
+                            <option value="forward">Forward</option>
+                            <option value="midfield">Midfield</option>
+                            <option value="defense">Defense</option>
+                            <option value="goalkeeper">Goalkeeper</option>
+                        </select>
+                        <label for="submit">
+                            <button type="submit" id="submit" value="OK">
+                                Submit
+                            </button>
+                            Submit the form?
+                        </label>
+                    </fieldset>
+                </form>
+            </section>
+        </main>
+        <footer>
+            <p>&copy; 2024 Ella Gordon</p>
+        </footer>
+    </body>
+</html>
