@@ -21,6 +21,32 @@
                     stats.
                 </p>
 
+            </form>
+
+            <!-- {% if position %}
+                <h2>Players in Position: {{ position }}</h2>
+            {% else %}
+                <h2>All Players</h2>
+            {% endif %} -->
+        
+            <!-- Table to display player data -->
+            <table>
+                <tr>
+                    <th>Name</th>
+                    <th>Age</th>
+                    <th>Position</th>
+                    <th>Goals Scored</th>
+                </tr>
+                {% for player in players %}
+                <tr>
+                    <td>{{ player.name }}</td>
+                    <td>{{ player.age }}</td>
+                    <td>{{ player.position }}</td>
+                    <td>{{ player.goals_scored }}</td>
+                </tr>
+                {% endfor %}
+            <!-- </table>
+
                 <legend></legend>
                 <table>
                     <caption>
@@ -38,7 +64,7 @@
                             <td>[Position]</td>
                         </tr>
                     </tbody>
-                </table>
+                </table> -->
             </section>
         </main>
         <footer>
