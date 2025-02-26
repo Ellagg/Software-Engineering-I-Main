@@ -23,14 +23,13 @@
                 </p>
                 <form action="/search" method="post">
                     <fieldset>
-                        <legend>legnend text</legend>
-                        <label for="firstlast"
+                        <label for="name"
                             ><p>Enter full name of player</p></label
                         >
                         <input
                             type="text"
-                            name="firstlast"
-                            id="firstlast"
+                            name="name"
+                            id="name"
                             required
                             placeholder="Player name"
                             autofocus
@@ -44,25 +43,27 @@
                 </form>
             </section>
             <section>
-                <legend>Order Details</legend>
-                <p>Select one product:</p>
-                <table>
-                    <caption>
-                        Player Information
-                    </caption>
-                    <thread>
-                        <th>Player Name</th>
+                <!-- <legend>Order Details</legend>
+                <p>Select one product:</p> -->
+                {% if player %}
+                <h3>Player Information</h3>
+                <table border="1">
+                    <tr>
+                        <th>Name</th>
                         <th>Age</th>
                         <th>Position</th>
-                    </thread>
-                    <tbody>
-                        <tr>
-                            <td>[Player's Name]</td>
-                            <td>[Age]</td>
-                            <td>[Position]</td>
-                        </tr>
-                    </tbody>
+                        <th>Goals Scored</th>
+                    </tr>
+                    <tr>
+                        <td>{{ player.name }}</td>
+                        <td>{{ player.age }}</td>
+                        <td>{{ player.position }}</td>
+                        <td>{{ player.goals_scored }}</td>
+                    </tr>
                 </table>
+                {% elif message %}
+                <p>{{ message }}</p>
+                {% endif %}
             </section>
         </main>
         <footer>

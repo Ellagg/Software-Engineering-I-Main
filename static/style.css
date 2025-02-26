@@ -115,7 +115,10 @@
   ins {}
   
   /*  ----- Table ----- */
-  table {border-collapse:collapse}
+  table {
+    border-collapse:collapse;
+    border-spacing: 10px;
+  }
   caption {
     background-color:var(--ivory); 
     border:1px solid var(--sage); 
@@ -129,13 +132,19 @@
   tr {}
     tr:nth-child(even) {}
     tr:nth-child(odd) {
-      background-color:var(--lemon-80);
+      background-color:var(--light-gray);
     }
   th {
     background-color:var(--ivory);
-    padding:1%;
-    text-align:left;}
-  td {border-bottom:1px solid var(--sage);}
+    padding:10%, 0;
+    text-align:center;
+    
+  }
+  td {
+    border-bottom:1px solid var(--sage);
+    text-align: center;
+    padding: 2px;
+  }
     td:nth-child(1) {}
   colgroup {}
   data {}

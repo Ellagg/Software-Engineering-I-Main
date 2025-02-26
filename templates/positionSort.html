@@ -20,16 +20,11 @@
                     Select a position from the drop-down menu then click submit
                     to view the data of all players in that position.
                 </p>
-                <form>
+                <form action="/positionSort" method="POST">
                     <fieldset>
                         <label for="position">Select a position:</label>
-                        <select
-                            name="position"
-                            id="position"
-                            name="position"
-                            required
-                        >
-                            <option value="" disabled>-select-</option>
+                        <select name="position" id="position" required>
+                            <!-- <option value="" disabled>-select-</option> -->
                             <option value="forward">Forward</option>
                             <option value="midfield">Midfield</option>
                             <option value="defense">Defense</option>
@@ -39,30 +34,33 @@
                             <button type="submit" id="submit" value="OK">
                                 Submit
                             </button>
-                            Submit the form?
                         </label>
                     </fieldset>
                 </form>
             </section>
             <section>
                 <legend></legend>
-                <table>
-                    <caption>
-                        Player Information
-                    </caption>
-                    <thread>
-                        <th>Player Name</th>
+                {% if players %}
+                <h3>Players in Position: {{ position }}</h3>
+                <table border="1">
+                    <tr>
+                        <th>Name</th>
                         <th>Age</th>
                         <th>Position</th>
-                    </thread>
-                    <tbody>
-                        <tr>
-                            <td>[Player's Name]</td>
-                            <td>[Age]</td>
-                            <td>[Position]</td>
-                        </tr>
-                    </tbody>
+                        <th>Goals Scored</th>
+                    </tr>
+                    {% for player in players %}
+                    <tr>
+                        <td>{{ player.name }}</td>
+                        <td>{{ player.age }}</td>
+                        <td>{{ player.position }}</td>
+                        <td>{{ player.goals_scored }}</td>
+                    </tr>
+                    {% endfor %}
                 </table>
+                {% elif message %}
+                <p>{{ message }}</p>
+                {% endif %}
             </section>
         </main>
         <footer>

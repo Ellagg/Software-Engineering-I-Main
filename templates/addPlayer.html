@@ -27,13 +27,11 @@
                 <form action="/addPlayer" method="post">
                     <fieldset>
                         <legend>legnend text</legend>
-                        <label for="firstlast"
-                            ><p>First and Last Name</p></label
-                        >
+                        <label for="name"><p>First and Last Name</p></label>
                         <input
                             type="text"
-                            name="firstlast"
-                            id="firstlast"
+                            name="name"
+                            id="name"
                             required
                             placeholder="First Last"
                             autofocus
@@ -61,6 +59,16 @@
                             <option value="defense">Defense</option>
                             <option value="goalkeeper">Goalkeeper</option>
                         </select>
+                        <label for="goals_scored">Enter Goals Scored:</label>
+                        <input
+                            type="number"
+                            name="goals_scored"
+                            id="goals_scored"
+                            size="30"
+                            placeholder="0"
+                            min="0"
+                            required
+                        />
                         <label for="submit">
                             <button type="submit" id="submit" value="OK">
                                 Submit
