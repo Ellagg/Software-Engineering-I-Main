@@ -7,7 +7,6 @@
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="stylesheet" type="text/css" media="screen"
         href="{{url_for("static", filename="style.css")}}" />
-        <script src="main.js"></script>
     </head>
     <body>
         <main>
@@ -40,7 +39,7 @@
             </section>
             <section>
                 <legend></legend>
-                {% if players %}
+                <!-- {% if players %} -->
                 <h3>Players in Position: {{ position }}</h3>
                 <table border="1">
                     <tr>
@@ -49,18 +48,26 @@
                         <th>Position</th>
                         <th>Goals Scored</th>
                     </tr>
-                    {% for player in players %}
+                    <!-- {% for player in players %}
                     <tr>
                         <td>{{ player.name }}</td>
                         <td>{{ player.age }}</td>
                         <td>{{ player.position }}</td>
                         <td>{{ player.goals_scored }}</td>
                     </tr>
-                    {% endfor %}
+                    {% endfor %} -->
+                    {% if players %} {% for player in players %}
+                    <tr>
+                        <td>{{ player.name }}</td>
+                        <td>{{ player.age }}</td>
+                        <td>{{ player.position }}</td>
+                        <td>{{ player.goals_scored }}</td>
+                    </tr>
+                    {% endfor %} {% endif %}
                 </table>
-                {% elif message %}
+                <!-- {% elif message %}
                 <p>{{ message }}</p>
-                {% endif %}
+                {% endif %} -->
             </section>
         </main>
         <footer>
