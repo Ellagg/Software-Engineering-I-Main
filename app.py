@@ -5,12 +5,6 @@ from pymongo import MongoClient
 
 app = Flask(__name__)
 
-CONNECTION_STRING = "mongodb+srv://ellaggordon:breadpottery123@players.rbqni.mongodb.net/"
-
-client = MongoClient(CONNECTION_STRING)
-db = client["SoftwareEngineeringI"]
-collection = db["players"]
-
 @app.route("/", methods = ["GET"])
 def home():
     return render_template("index.html")
@@ -29,8 +23,13 @@ def addPlayer():
     return render_template("addPlayer.html")
 
 @app.route("/search", methods = ["GET"])
-def search(players=[]):
+def searchDefault():
     return render_template("search.html")
+
+@app.route("/search<players_json>", methods = ["GET"])
+def search(players_json):
+    players = json.loads(players_json)
+    return render_template("search.html", players=players)
 
 @app.route("/viewAll", methods = ["GET"])
 def viewAll():
@@ -55,10 +54,7 @@ def add_player():
         "goals_scored": goals_scored
     }
 
-    print(new_player)
-
     new_player_json = jsonify(new_player)
-    print(new_player_json)
     temp = requests.post("http://127.0.0.1:4000/add-player", json = new_player)
 
     return redirect(url_for('addPlayer'))
@@ -67,25 +63,15 @@ def add_player():
 def search_player():
     name = request.form.get("name")  # Get the name from the form
     name = name.replace(" ", "+")
-    print(name)
-    players = requests.get("http://localhost:8080/players/namedplayers?name=" + name)
 
-    print(players.json())
+    response = requests.get("http://localhost:8080/players/namedplayers?name=" + name)
+    players = response.json()
+    players_json = json.dumps(players)
 
-    
-    # return render_template("search.html", players=players)
-    # return redirect(url_for("search", players=players))
-    return "" 
-
-
-
-    # # Search for the player in MongoDB (case-insensitive search)
-    # player = collection.find_one({"name": {"$regex": f"^{name}$", "$options": "i"}}, {"_id": 0})
-
-    # if players:
-    #     return render_template("search.html", players=players)
-    # else:
-    #     return render_template('search.html', message="Player not found.")
+    if players:
+        return redirect(url_for("search", players_json=players_json))
+    else:
+        return redirect(url_for('searchDefault'))
 
 @app.route('/positionSort', methods=['POST'])
 def search_by_position():
@@ -95,8 +81,6 @@ def search_by_position():
     response = requests.get("http://localhost:5000/sort-by-position?position=" + position)
     players = response.json()
     players_json = json.dumps(players)
-
-    print(players)
 
     if players:
         return redirect(url_for("positionSort", players_json=players_json))

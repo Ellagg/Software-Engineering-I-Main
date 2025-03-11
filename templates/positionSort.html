@@ -39,7 +39,6 @@
             </section>
             <section>
                 <legend></legend>
-                <!-- {% if players %} -->
                 <h3>Players in Position: {{ position }}</h3>
                 <table border="1">
                     <tr>
@@ -48,14 +47,6 @@
                         <th>Position</th>
                         <th>Goals Scored</th>
                     </tr>
-                    <!-- {% for player in players %}
-                    <tr>
-                        <td>{{ player.name }}</td>
-                        <td>{{ player.age }}</td>
-                        <td>{{ player.position }}</td>
-                        <td>{{ player.goals_scored }}</td>
-                    </tr>
-                    {% endfor %} -->
                     {% if players %} {% for player in players %}
                     <tr>
                         <td>{{ player.name }}</td>
@@ -65,9 +56,6 @@
                     </tr>
                     {% endfor %} {% endif %}
                 </table>
-                <!-- {% elif message %}
-                <p>{{ message }}</p>
-                {% endif %} -->
             </section>
         </main>
         <footer>
